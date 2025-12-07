@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    
+    <div class="container">
+      <h2>Admission form</h2>
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <p id="progressText">Progress: 0%</p>
+      <div class="namess">
+        <p id="StudentName">Student Name:</p>
+        <input type="text" id="first" placeholder="first name" />
+        <input type="text" id="last" placeholder="Last name" />
+      </div>
+      <div class="dropdown">
+        <p id="selectyourprogram">Select your BS program:</p>
+        <input
+          type="text"
+          id="programInput"
+          placeholder="Select your BS program...">
+      </div>
+      <div class="birthDate">
+        <p id="enteryourdate">Student DoB:</p>
+        <input type="date" id="calender" placeholder="mm/dd/yyyy" />
+      </div>
+      <div class="parent">
+        <p>Parent/guardian<br />Name</p>
+        <input type="text" id="firstp" placeholder="first name" />
+        <input type="text" id="lastp" placeholder="Last name" />
+      </div>
+      <div class="address">
+        <p id="address">Current Address:</p>
+        <input type="text" id="streetadress" placeholder="Street address" />
+      </div>
+      <div class="cityiniformation">
+        <input type="text" id="city" placeholder="City" />
+        <input type="text" id="Region" placeholder="Region" />
+      </div>
+
+      <div class="phone">
+        <p id="phones">Phone:</p>
+        <input type="number" id="number" placeholder="Phone" />
+        <input type="text" id="country" placeholder="Country" />
+      </div>
+      <div class="email">
+        <p id="Emails">
+          Email*<br />Your admission<br />confirmation will be sent via<br />email.
+        </p>
+        <input type="text" id="emailss" placeholder="email" />
+      </div>
+      <button id="submitBtn">Submit your admission form</button>
+    </div>
+
+    
+
+
+    <script src="script.js"></script>
+</body>
+</html>
