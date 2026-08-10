@@ -1,37 +1,42 @@
-# Admission-form-project
+# 🎓 Admission Form
 
-# 🎓 Admission Form (HTML, CSS, JavaScript)
+A modern and responsive **Student Admission Form** built with HTML, CSS, JavaScript, and Bootstrap 5.
 
-A professional and responsive **Admission Form Web Application** created using  
-**HTML, CSS, and JavaScript**, featuring a smart **Progress Bar** that updates automatically as the user fills out the form.
+The project provides a structured admission form with real-time progress tracking, input validation, and responsive design for desktop, tablet, and mobile devices.
 
----
+Live Demo
+https://admission-form-murex.vercel.app/
 
-## 🚀 Features
+## ✨ Features
 
-### ✅ **1. Clean & Modern UI**
-- Simple and user-friendly layout  
-- Well-organized sections for collecting student information
+- 🎓 Student admission form
+- 📊 Real-time form completion progress
+- 👤 Student and parent/guardian information
+- 🎯 BS program selection
+- 📅 Date of birth field
+- 📍 Address and location information
+- 📞 Phone and country information
+- 📧 Email validation
+- ✅ Real-time input validation
+- 📱 Fully responsive Bootstrap 5 design
+- 🎨 Modern and professional UI
+- 🔄 Dynamic form progress indicator
+- 🚫 Form submission validation
+- ⚡ Interactive JavaScript functionality
 
-### ✅ **2. Real-Time Progress Bar**
-- Progress automatically updates based on how many fields the user has filled
-- Displays percentage visually (progress bar) and textually ("Progress: 60%")
-- Smooth animated progress transition
+## 🛠️ Technologies Used
 
-### ✅ **3. Form Sections**
-The admission form includes the following fields:
+- HTML5
+- CSS3
+- JavaScript (ES6)
+- Bootstrap 5
 
-- Student First & Last Name  
-- Program Selection  
-- Date of Birth  
-- Parent/Guardian Name  
-- Current Address  
-- City & Region  
-- Phone Number  
-- Country  
-- Email Address  
+## 📁 Project Structure
 
-### ✅ **4. JavaScript Based Validation Logic**
-- Tracks filled fields in real-time  
-- Calculates progress:
-  
+```text
+Admission-Form/
+│
+├── index.html
+├── style.css
+├── script.js
+└── README.md
