@@ -1,211 +1,222 @@
-let firstName = document.getElementById("first");
-let lastName = document.getElementById("last");
-let selectProgram = document.getElementById("programInput");
-let birthDate = document.getElementById("calender");
-let firstNamep = document.getElementById("firstp");
-let lastNamep = document.getElementById("lastp");
-let adress = document.getElementById("streetadress");
-let cityName = document.getElementById("city");
-let region = document.getElementById("Region");
-let phoneNumber = document.getElementById("number");
-let countryName = document.getElementById("country");
-let yourEmails = document.getElementById("emailss");
-let submitBtn = document.getElementById("submitBtn");
-let container = document.querySelector(".container");
-let progressBar = document.getElementById("progressBar");
-let progressText = document.getElementById("progressText");
-let inputs = document.querySelectorAll("input");
+const form = document.getElementById("admissionForm");
 
+const inputs = document.querySelectorAll(
+  "#admissionForm input, #admissionForm select"
+);
+
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+const submitBtn = document.getElementById("submitBtn");
+
+const firstName = document.getElementById("first");
+const lastName = document.getElementById("last");
+const parentFirstName = document.getElementById("firstp");
+const parentLastName = document.getElementById("lastp");
+const phoneNumber = document.getElementById("number");
+const email = document.getElementById("emailss");
+
+
+// Update application progress
 function updateProgress() {
-  let filled = 0;
+  let filledFields = 0;
 
-  inputs.forEach(input => {
-      if(input.value.trim() !== "") {
-        filled++;
-      }
+  inputs.forEach((input) => {
+    if (input.value.trim() !== "") {
+      filledFields++;
+    }
   });
 
-  let total = inputs.length;
-  let percent = Math.round((filled / total) * 100);
+  const totalFields = inputs.length;
 
-  progressBar.style.width = percent + "%";
-  progressText.textContent = "Progress: " + percent + "%";
+  const percentage = Math.round(
+    (filledFields / totalFields) * 100
+  );
+
+  progressBar.style.width = `${percentage}%`;
+  progressText.textContent = `${percentage}%`;
 }
 
-inputs.forEach(input => {
-  input.addEventListener("input", updateProgress);
-});
 
-
-let submitCounts = 0;
-
-window.addEventListener("load", () => {
-  alert("sumbit your admission form at least three times...");
-  return;
-});
-
-//for first name//
-firstName.addEventListener("input", () => {
-  if (firstName.value.length < 3) {
-    firstName.classList.add("borders1");
-    firstName.classList.remove("borders2");
-  } else {
-    firstName.classList.add("borders2");
-    firstName.classList.remove("borders1");
+// Validate minimum name length
+function validateName(input) {
+  if (input.value.trim().length < 3) {
+    input.classList.add("is-invalid");
+    input.classList.remove("is-valid");
+    return false;
   }
-});
 
-//for last name//
-lastName.addEventListener("input", () => {
-  if (lastName.value.length < 3) {
-    lastName.classList.add("borders1");
-    lastName.classList.remove("borders2");
-    return;
-  } else {
-    lastName.classList.add("borders2");
-    lastName.classList.remove("borders1");
-    return;
+  input.classList.remove("is-invalid");
+  input.classList.add("is-valid");
+
+  return true;
+}
+
+
+// Validate phone number
+function validatePhone() {
+  const phonePattern = /^[0-9]{10,15}$/;
+
+  const value = phoneNumber.value.trim();
+
+  if (!phonePattern.test(value)) {
+    phoneNumber.classList.add("is-invalid");
+    phoneNumber.classList.remove("is-valid");
+
+    return false;
   }
-});
 
-//parent first name//
-firstNamep.addEventListener("input", () => {
-  if (firstNamep.value.length < 3) {
-    firstNamep.classList.add("borders1");
-    firstNamep.classList.remove("borders2");
-  } else {
-    firstNamep.classList.add("borders2");
-    firstNamep.classList.remove("borders1");
+  phoneNumber.classList.remove("is-invalid");
+  phoneNumber.classList.add("is-valid");
+
+  return true;
+}
+
+
+// Validate email
+function validateEmail() {
+  const emailPattern =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailPattern.test(email.value.trim())) {
+    email.classList.add("is-invalid");
+    email.classList.remove("is-valid");
+
+    return false;
   }
-});
 
-//parent last name//
-lastNamep.addEventListener("input", () => {
-  if (lastNamep.value.length < 3) {
-    lastNamep.classList.add("borders1");
-    lastNamep.classList.remove("borders2");
-  } else {
-    lastNamep.classList.add("borders2");
-    lastNamep.classList.remove("borders1");
+  email.classList.remove("is-invalid");
+  email.classList.add("is-valid");
+
+  return true;
+}
+
+
+// Validate names while typing
+[firstName, lastName, parentFirstName, parentLastName].forEach(
+  (input) => {
+    input.addEventListener("input", () => {
+      validateName(input);
+      updateProgress();
+    });
   }
-});
+);
 
-//phone number//
+
+// Validate phone
 phoneNumber.addEventListener("input", () => {
-  if (phoneNumber.value.length < 11) {
-    phoneNumber.classList.add("borders1");
-    phoneNumber.classList.remove("borders2");
-  } else {
-    phoneNumber.classList.add("borders2");
-    phoneNumber.classList.remove("borders1");
-  }
+  validatePhone();
+  updateProgress();
 });
 
-//for emails//
-yourEmails.addEventListener("input", () => {
-  if (!/[A-Z]/.test(yourEmails.value)) {
-    yourEmails.classList.add("borders1");
-  } else {
-    yourEmails.classList.remove("borders1");
-  }
+
+// Validate email
+email.addEventListener("input", () => {
+  validateEmail();
+  updateProgress();
 });
 
-yourEmails.addEventListener("input", () => {
-  if (!/[a-z]/.test(yourEmails.value)) {
-    yourEmails.classList.add("borders1");
-  } else {
-    yourEmails.classList.remove("borders1");
-  }
+
+// Update progress for every field
+inputs.forEach((input) => {
+  input.addEventListener("input", updateProgress);
+  input.addEventListener("change", updateProgress);
 });
 
-yourEmails.addEventListener("input", () => {
-  if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(yourEmails.value)) {
-    yourEmails.classList.add("borders1");
-  } else {
-    yourEmails.classList.remove("borders1");
+
+// Form submission
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  let isValid = true;
+
+  // Validate names
+  if (!validateName(firstName)) {
+    isValid = false;
   }
+
+  if (!validateName(lastName)) {
+    isValid = false;
+  }
+
+  if (!validateName(parentFirstName)) {
+    isValid = false;
+  }
+
+  if (!validateName(parentLastName)) {
+    isValid = false;
+  }
+
+  // Validate phone
+  if (!validatePhone()) {
+    isValid = false;
+  }
+
+  // Validate email
+  if (!validateEmail()) {
+    isValid = false;
+  }
+
+  // Validate all required fields
+  if (!form.checkValidity()) {
+    isValid = false;
+  }
+
+  if (!isValid) {
+    form.classList.add("was-validated");
+
+    const firstInvalid = form.querySelector(
+      ".is-invalid, :invalid"
+    );
+
+    if (firstInvalid) {
+      firstInvalid.focus();
+    }
+
+    return;
+  }
+
+  showSuccessMessage();
 });
 
-yourEmails.addEventListener("input", () => {
-  if (!/[0-9]/.test(yourEmails.value)) {
-    yourEmails.classList.add("borders1");
-  } else {
-    yourEmails.classList.remove("borders1");
-  }
-});
 
-submitBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  submitCounts++;
-  if (submitCounts === 3) {
-    container.classList.add("blur");
-    submitBtn.style.opacity = "0.2";
-    submitBtn.style.cursor = "not allowed";
-    submitBtn.disabled = true;
-    submitBtn.style.backgroundColor = "gray";
-    submitBtn.textContent = "limit reached";
-  }
-  if (firstName.value === "") {
-    alert("Please enter your first name...");
-  }
+// Display success message
+function showSuccessMessage() {
+  const card = document.querySelector(".admission-card");
 
-  if (lastName.value === "") {
-    alert("please enter your last name...");
-    return;
-  }
+  card.innerHTML = `
+    <div class="form-success">
 
-  if (selectProgram.value === "") {
-    alert("Please selecet your B/S Program...");
-    return;
-  }
+      <div class="form-success-icon">
+        <i class="bi bi-check-lg"></i>
+      </div>
 
-  if (birthDate.value === "") {
-    alert("Please enter your birth date...");
-    return;
-  }
+      <h2 class="fw-bold mb-2">
+        Application Submitted!
+      </h2>
 
-  if (firstNamep.value === "") {
-    alert("Please enter your parent first name...");
-    return;
-  }
+      <p class="text-muted mb-4">
+        Your admission application has been successfully submitted.
+        Please check your email for confirmation.
+      </p>
 
-  if (lastNamep.value === "") {
-    alert("Please enter your last name of parent...");
-    return;
-  }
+      <button
+        class="btn btn-primary px-4"
+        id="newApplication"
+      >
+        <i class="bi bi-arrow-repeat me-2"></i>
+        Submit Another Application
+      </button>
 
-  if (adress.value === "") {
-    alert("Please enter your current city name...");
-    return;
-  }
+    </div>
+  `;
 
-  if (cityName.value === "") {
-    alert("please enter your city name...");
-    return;
-  }
+  document
+    .getElementById("newApplication")
+    .addEventListener("click", () => {
+      window.location.reload();
+    });
+}
 
-  if (region.value === "") {
-    alert("please enter your region...");
-    return;
-  }
 
-  if (phoneNumber.value === "") {
-    alert("please enter your phone number...");
-    return;
-  }
-
-  if (countryName.value === "") {
-    alert("please enter your country name...");
-    return;
-  }
-
-  if (yourEmails.value === "") {
-    alert("please enter your emails...");
-  } else {
-    submitBtn.textContent = "submit successfully";
-  }
-
-  setTimeout(() => {
-    submitBtn.textContent = "submit your admission form";
-  }, 2000);
-});
+// Initial progress
+updateProgress();

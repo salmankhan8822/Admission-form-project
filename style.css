@@ -1,145 +1,323 @@
-.container {
-  width: 60%;
-  margin: 30px auto;
-  padding: 25px;
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
-  font-family: Arial, sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #3730a3;
+  --background: #f5f7fb;
+  --text-dark: #172033;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --card: #ffffff;
+  --success: #16a34a;
+  --danger: #dc2626;
 }
 
-.progress-container{
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(79, 70, 229, 0.12),
+      transparent 35%
+    ),
+    var(--background);
+  color: var(--text-dark);
+}
+
+/* Main page */
+
+.admission-page {
+  min-height: 100vh;
+}
+
+/* Main card */
+
+.admission-card {
   width: 100%;
-  height: 20px;
-  background-color: #ddd;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  max-width: 900px;
+  background: var(--card);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  border-radius: 24px;
+  padding: 35px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
 }
 
-.progress-bar{
-  height: 100%;
-  width: 0%;
-  background: #4caf50;
-  border-radius: 10px;
-  transition: width0.3s ease;
+/* Header */
+
+.form-header {
+  margin-bottom: 30px;
 }
 
-#progressText{
-  font-size: 16px;
-  margin-bottom: 20px;
-
-}
-
-.blur {
-  filter: blur(3px);
-  color: gray;
-  background-color: gray;
-  pointer-events: none;
-  width: 60%;
-  transition: 0.7s;
-}
-
-.container h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 25px;
-  font-size: 28px;
-}
-
-.container p {
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #444;
-}
-
-.container input {
-  width: 100%;
-  padding: 12px;
-  font-size: 15px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  outline: none;
-  transition: 0.3s ease;
-}
-
-/* .container input:focus {
-  border-color: #6c63ff;
-  box-shadow: 0px 0px 6px rgba(108, 99, 255, 0.5);
-} */
-
-.namess,
-.cityiniformation,
-.parent,
-.phone {
+.header-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
   display: flex;
-  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    #7c3aed
+  );
+  color: white;
+  font-size: 28px;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.25);
 }
 
-.namess input,
-.cityiniformation input,
-.parent input,
-.phone input {
-  flex: 1;
+.form-header h1 {
+  margin-bottom: 8px;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.form-header p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* Progress */
+
+.progress-section {
+  margin-bottom: 35px;
+  padding: 18px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+}
+
+.progress-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.progress-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.progress {
+  height: 9px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #e5e7eb;
+}
+
+.progress-bar {
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    #7c3aed
+  );
+  transition: width 0.35s ease;
+}
+
+/* Form sections */
+
+.form-section {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.form-section:first-of-type {
+  padding-top: 0;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.section-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(79, 70, 229, 0.1);
+  color: var(--primary);
+  font-size: 20px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.section-heading p {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* Form controls */
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.form-control,
+.form-select,
+.input-group-text {
+  min-height: 48px;
+  border-color: var(--border);
+}
+
+.form-control,
+.form-select {
+  font-size: 14px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+.input-group-text {
+  background: #f8fafc;
+  color: var(--text-muted);
+}
+
+/* Submit */
+
+.submit-section {
+  padding-top: 30px;
 }
 
 #submitBtn {
-  width: 100%;
-  padding: 14px;
-  background: white;
-  color: black;
-  border: 1px solid black;
-  font-size: 17px;
-  font-size: 20px;
-  font-weight: bold;
   border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: 0.3s ease;
+  border-radius: 12px;
+  min-height: 52px;
+  font-weight: 700;
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    #7c3aed
+  );
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.2);
+  transition: all 0.25s ease;
 }
 
 #submitBtn:hover {
-  background: #5952e3;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(79, 70, 229, 0.3);
 }
 
-.dropdown,
-.birthDate,
-.address,
-.email {
-  margin-top: 15px;
+#submitBtn:active {
+  transform: translateY(0);
 }
 
-.phone input#country {
-  max-width: 40%;
+.submit-section p {
+  color: var(--text-muted);
+  font-size: 12px;
 }
 
+/* Validation */
 
-.borders1 {
-  border: 5px solid #ff4d4d; 
-  box-shadow: 0 0 9px rgba(255, 79, 79, 0.9); 
+.form-control.is-valid,
+.form-select.is-valid {
+  border-color: var(--success);
 }
 
-.borders2 {
-  border: 2px solid #2ecc71; 
-  box-shadow: 0px 0px 6px rgba(46, 204, 113, 0.6); 
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: var(--danger);
 }
 
+/* Success state */
 
-@media (max-width: 768px) {
-  .container {
-    width: 90%;
+.form-success {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.form-success-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dcfce7;
+  color: var(--success);
+  border-radius: 50%;
+  font-size: 32px;
+}
+
+/* Tablet */
+
+@media (max-width: 991.98px) {
+  .admission-card {
+    max-width: 760px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 575.98px) {
+  .admission-page {
+    padding: 15px !important;
   }
 
-  .namess,
-  .cityiniformation,
-  .parent,
-  .phone {
-    flex-direction: column;
+  .admission-card {
+    padding: 22px 18px;
+    border-radius: 18px;
   }
 
-  .phone input#country {
-    max-width: 100%;
+  .form-header h1 {
+    font-size: 26px;
+  }
+
+  .form-header p {
+    font-size: 13px;
+  }
+
+  .header-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+  }
+
+  .form-section {
+    padding: 24px 0;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+  }
+
+  .section-heading h2 {
+    font-size: 17px;
+  }
+
+  .section-heading p {
+    font-size: 12px;
+  }
+
+  .progress-section {
+    padding: 14px;
+  }
+
+  #submitBtn {
+    font-size: 14px;
   }
 }
